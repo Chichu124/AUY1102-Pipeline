@@ -144,9 +144,22 @@ private checkDateIsValue(date: string): void {
    ```
 2. Se implementó el flujo de GitHub Actions en [`.github/workflows/sonarcloud.yml`](./.github/workflows/sonarcloud.yml) para ejecutar el análisis automáticamente en cada push y Pull Request.
 
-#### 4.7. Configuración de Snyk
+#### 4.7. Configuración y Resultados de Escaneo en Snyk
 1. Se incorporó el pipeline de GitHub Actions en [`.github/workflows/snyk.yml`](./.github/workflows/snyk.yml) integrando tanto `snyk test` (Open Source SCA) como `snyk code test` (SAST de código fuente).
-2. Se actualizaron dependencias críticas obsoletas en `package.json`, migrando `chokidar` de la versión vulnerable `^2.0.3` a la versión segura `^3.6.0`.
+2. Se importó y escaneó el repositorio en la consola web de Snyk ([app.snyk.io](https://app.snyk.io)) con los siguientes resultados reales obtenidos:
+   * **Target Analizado:** `Chichu124/AUY1102-Pipeline`
+   * **Consola de Proyectos Snyk:** [https://app.snyk.io/org/chichu124/projects](https://app.snyk.io/org/chichu124/projects)
+   * **Open Source Dependencies (`package.json`):** [Ver reporte en Snyk](https://app.snyk.io/org/chichu124/project/5f243fa4-b3c0-4586-8d73-fdd1e01ddcd9)
+     - 🔴 0 Critical
+     - 🟠 4 High
+     - 🟡 3 Medium
+     - ⚪ 0 Low
+   * **Container Security (`Dockerfile`):** [Ver reporte en Snyk](https://app.snyk.io/org/chichu124/project/d911032c-d020-403e-a6f0-f7a006f0c93f)
+     - 🔴 1 Critical
+     - 🟠 14 High
+     - 🟡 17 Medium
+     - ⚪ 5 Low
+3. Se actualizaron dependencias críticas obsoletas en `package.json`, migrando `chokidar` de la versión vulnerable `^2.0.3` a la versión segura `^3.6.0`.
 
 #### 4.8. Remediaciones de Vulnerabilidades Detectadas
 
