@@ -1,0 +1,40 @@
+name: Snyk Security Scan
+
+on:
+  push:
+    branches:
+      - master
+      - 'feature/**'
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  security:
+    name: Snyk Vulnerability Scanner
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Snyk Open Source Test
+        uses: snyk/actions/node@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+      - name: Snyk Code Test (SAST)
+        uses: snyk/actions/node@master
+        continue-on-error: true
+        with:
+          command: code test
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}

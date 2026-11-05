@@ -1,3 +1,40 @@
+# AUY1102 - Evaluación Parcial N° 2: Pruebas Unitarias y Análisis de Seguridad II
+
+> **Asignatura:** Ciclo de Vida del Software I (AUY1102)  
+> **Institución:** Duoc UC  
+> **Equipo:** Grupo 4 (Simón Lagos y Compañero)  
+> **Documentación Completa de la Evaluación:** 📄 [Ver Informe Técnico Completo (INFORME_EVALUACION_PARCIAL_2.md)](./INFORME_EVALUACION_PARCIAL_2.md)
+
+---
+
+## Ejecución Rápida de Pruebas y Cobertura (Parte 1)
+
+Para ejecutar el script que corre las pruebas unitarias existentes, calcula la cobertura por componente y reporta por pantalla qué pruebas fallan y qué líneas carecen de cobertura:
+
+```bash
+# 1. Instalar dependencias
+npm install --legacy-peer-deps
+
+# 2. Ejecutar el script interactivo de pruebas y cobertura
+npm run test:report
+```
+
+---
+
+## Análisis de Seguridad y Herramientas (Parte 2)
+
+* **SonarCloud:** Configurado en [`sonar-project.properties`](./sonar-project.properties) y [`.github/workflows/sonarcloud.yml`](./.github/workflows/sonarcloud.yml).
+* **Snyk (Open Source & SAST):** Configurado en [`.github/workflows/snyk.yml`](./.github/workflows/snyk.yml).
+* **npm audit:** Ejecutar `npm audit` para revisión de dependencias vulnerables.
+* **GitHub Advanced Security:** Habilitación de Secret Scanning y Dependabot en *Settings -> Code security and analysis*.
+* **Remediaciones de Código:**
+  - `src/quality/insecure-1-object.ts`: Mitigación de SSTI (Server-Side Template Injection).
+  - `src/quality/insecure-2-object.ts`: Mitigación de SQL Injection, XSS, CSRF y secretos en código.
+  - `src/quality/errores-object.ts`: Corrección de errores de tipo y aplicación de SRP (SOLID).
+  - `credentials.yml` / `.env.example`: Eliminación de Personal Access Token expuesto.
+
+---
+
 # Github NPM Registry
 
 ## About this article
